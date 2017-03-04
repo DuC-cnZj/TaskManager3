@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Mail;
+use Event;
+use App\Events\WelcomeEmail;
 
 class RegisterController extends Controller
 {
@@ -69,6 +71,8 @@ class RegisterController extends Controller
             'password' => bcrypt($data['password']),
         ]);
         
+        Event::fire(new WelcomeEmail($user));
+
         return  $user;
 
     }
