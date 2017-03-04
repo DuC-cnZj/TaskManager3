@@ -18,6 +18,7 @@ class WelcomeEmailEventListener implements ShouldQueue
 
     public function __construct()
     {
+        
     }
 
     /**
