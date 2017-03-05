@@ -10,6 +10,9 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 // use Event;
 // use App\Events\WelcomeEmail;
 use App\Jobs\SendWelcomeEmail;
+use Auth;
+use Illuminate\Http\Request;
+use App\Events\Registered;
 
 class RegisterController extends Controller
 {
@@ -79,5 +82,17 @@ class RegisterController extends Controller
 
         return  $user;
 
+    }
+
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+
+        event(new Registered($user = $this->create($request->all())));
+
+        $this->guard()->login($user);
+
+        return $this->registered($request, $user)
+                        ?: redirect($this->redirectPath())->with('register', '欢迎注册我们的课程，稍后会有邮件发送，注意查收！');
     }
 }

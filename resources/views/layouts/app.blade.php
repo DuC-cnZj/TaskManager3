@@ -15,7 +15,8 @@
     {{-- <script src="{{ asset('js/jquery.min.js') }}"></script> --}}
     <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-
+    <link href="//cdn.bootcss.com/animate.css/3.5.2/animate.css" rel="stylesheet">
+    
     <!-- Scripts -->
     <script>
         window.Laravel = {!! json_encode([

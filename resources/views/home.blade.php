@@ -2,6 +2,13 @@
 
 @section('content')
 <div class="container">
+	@if(session('register'))
+		<div class="alert alert-success  animated bounceInRight" id="qq">
+			{{ session('register') }}
+			<button type="button" class="close" ><span aria-hidden="true" id="duc">&times;</span><span class="sr-only">Close</span></button>
+		</div>
+	@endif
+
     <div class="row">
 	    @foreach($projects as $project)
         <div class="col-sm-6 col-xs-12 col-md-3">
@@ -45,6 +52,11 @@
         $('.icon-bar').hide();
         $('.thumbnail').hover(function(){
             $(this).find('.icon-bar').toggle();
+        });
+
+        $("#duc").click(function(){
+        	$("#qq").removeClass('bounceInRight');
+        	$("#qq").addClass('lightSpeedOut');
         });
 
     });
