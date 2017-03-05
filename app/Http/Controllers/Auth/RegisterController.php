@@ -6,9 +6,10 @@ use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
-use Mail;
-use Event;
-use App\Events\WelcomeEmail;
+// use Mail;
+// use Event;
+// use App\Events\WelcomeEmail;
+use App\Jobs\SendWelcomeEmail;
 
 class RegisterController extends Controller
 {
@@ -71,7 +72,10 @@ class RegisterController extends Controller
             'password' => bcrypt($data['password']),
         ]);
         
-        Event::fire(new WelcomeEmail($user));
+        // Event::fire(new WelcomeEmail($user));
+
+        $Job = (new SendWelcomeEmail($user))->onQueue('vip')->delay(5);
+        dispatch($Job);
 
         return  $user;
 
