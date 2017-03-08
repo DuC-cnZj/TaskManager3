@@ -49,6 +49,17 @@
                     <ul class="nav navbar-nav">
                       <li>{{ link_to_route('tasks.index', '所有任务') }}</li>
                       <li>{{ link_to_route('tasks.charts', '图表统计') }}</li>
+
+                      @role('admin')
+                      <li class="dropdown">
+                            <a href="#" class="btn dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown">用户权限管理
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                            <li>{{ link_to_route('roles.index', '所有角色') }}</li>
+                            </ul>
+                      </li>
+                      @endrole
                     </ul>
                 @if(Auth::user())
                     <search></search>

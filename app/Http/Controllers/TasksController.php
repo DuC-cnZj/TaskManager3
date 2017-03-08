@@ -22,6 +22,7 @@ class TasksController extends Controller
     public function __construct(TasksRepository $task)
     {
         $this->task = $task;
+        $this->middleware('auth');
     }
 
     public function index()

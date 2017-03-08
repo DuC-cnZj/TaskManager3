@@ -19,7 +19,7 @@ Route::get('/home', 'HomeController@welcome');
 
 Route::resource('projects', 'ProjectsController');
 
-Route::get('tasks/charts', ['as'=>'tasks.charts', 'uses'=>'TasksController@charts']);
+Route::get('tasks/charts', ['middleware' => 'auth' , 'as'=>'tasks.charts', 'uses'=>'TasksController@charts']);
 
 Route::get('tasks/searchApi', ['as'=>'tasks.search', 'uses'=>'TasksController@searchApi']);
 
@@ -32,6 +32,12 @@ Route::post('tasks/{id}/check', ['as'=>'tasks.check', 'uses'=>'TasksController@c
 Route::resource('tasks', 'TasksController');
 
 Route::resource('tasks.steps', 'StepsController');
+
+Route::group(['prefix' => 'admin', 'middleware'=>'auth'], function() {
+    Route::resource('roles', 'RolesController');
+    Route::resource('permissions', 'PermissionsController');
+    Route::resource('user', 'UsersController');
+});
 
 
 
