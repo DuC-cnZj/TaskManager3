@@ -8455,3 +8455,10 @@ button.close {
 .project-modal .modal-trigger .fa-btn {
   margin-right: 0;
 }
+
+.role-btn {
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 1.5px;
+}

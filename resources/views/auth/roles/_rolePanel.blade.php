@@ -2,8 +2,23 @@
 		<div class="col-md-4">
 			<div class="panel {{ $role->name == 'admin' ? "panel-danger" : "panel-default"}} ">
 			    <div class="panel-heading">
-					<i class="fa fa-user fa-btn"></i> 
-					{{ $role->display_name or $role->name }}
+				    <div class="pull-left">
+						<i class="fa fa-btn fa-user "></i> 
+						{{ $role->display_name or $role->name }}
+					</div>
+
+					@if($role->name !== 'admin')
+						@ability('admin', 'delete_role')
+							@include('auth.roles._deleteForm')
+						@endability
+					@endif
+
+					@ability('admin', 'edit_role')
+					@include('auth.roles._editRoleModal')
+					@endability
+					
+                    <div class="clearfix"></div>
+
 			    </div>
 			    <div class="panel-body">
 				    <ul class="fa-ul">

@@ -21,4 +21,4 @@ mix.sass('resources/assets/sass/app.scss', 'public/css');
 	// 'public/js/charts.js');
 
 	 // mix.js('resources/assets/js/vue/app.js', 'public/js/app1.js');
-	 mix.js('resources/assets/js/vue/search.js', 'public/js');
+	 // mix.js('resources/assets/js/vue/search.js', 'public/js');

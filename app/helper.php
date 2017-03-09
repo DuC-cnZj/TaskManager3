@@ -19,3 +19,8 @@ function rand_color()
 
 	return 'rgba('.$R.','.$G.','.$B.',0.8)';
 }
+
+function permCheck($perm, $role)
+{
+	return $role->hasPermission($perm->name)?true:false;
+}

@@ -17,6 +17,8 @@ class RolesController extends Controller
     public function __construct()
     {
         $this->middleware('role:admin');
+        $this->middleware('ability:admin,edit_user',['only'=>'update']);
+        $this->middleware('ability:admin,delete_role',['only'=>'destroy']);
     }
 
     public function index()
@@ -86,7 +88,15 @@ class RolesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $role = Role::findOrFail($id);
+        if ($role->name !== 'admin') {
+            $role->name = $request->name;
+        }
+        $role->display_name = $request->display_name;
+        $role->description = $request->description;
+        $role->save();
+        $role->savePermissions($request->perm);
+        return redirect()->back();
     }
 
     /**
@@ -97,6 +107,12 @@ class RolesController extends Controller
      */
     public function destroy($id)
     {
-        //
+         $role = Role::findOrFail($id);
+        if($role->name !== 'admin'){
+            $role->delete();           
+        }
+
+        return redirect()->back();
+
     }
 }
