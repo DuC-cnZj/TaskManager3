@@ -56,7 +56,8 @@
                                 <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                            <li>{{ link_to_route('roles.index', '所有角色') }}</li>
+                            <li>{{ link_to_route('roles.index', '角色权限') }}</li>
+                            <li>{{ link_to_route('user.index', '用户概览') }}</li>
                             </ul>
                       </li>
                       @endrole

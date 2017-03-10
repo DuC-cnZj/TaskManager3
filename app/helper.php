@@ -24,3 +24,8 @@ function permCheck($perm, $role)
 {
 	return $role->hasPermission($perm->name)?true:false;
 }
+
+function roleCheck($role, $user)
+{
+	return $user->hasRole($role->name)?true:false;
+}

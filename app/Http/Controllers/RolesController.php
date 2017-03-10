@@ -18,7 +18,7 @@ class RolesController extends Controller
     {
         $this->middleware('role:admin');
         $this->middleware('ability:admin,edit_user',['only'=>'update']);
-        $this->middleware('ability:admin,delete_role',['only'=>'destroy']);
+        $this->middleware(['ability:admin,delete_role', 'protect.admin.role'],['only'=>'destroy']);
     }
 
     public function index()
@@ -107,11 +107,8 @@ class RolesController extends Controller
      */
     public function destroy($id)
     {
-         $role = Role::findOrFail($id);
-        if($role->name !== 'admin'){
-            $role->delete();           
-        }
-
+        $role = Role::findOrFail($id);
+        $role->delete();           
         return redirect()->back();
 
     }

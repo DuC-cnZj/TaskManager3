@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
+use App\Role;
 
 class UsersController extends Controller
 {
@@ -14,6 +16,10 @@ class UsersController extends Controller
     public function index()
     {
         //
+        $users = User::with(['roles.perms'])->get();
+        $roles = Role::get();
+        // dd($users);
+        return view ('auth.users.index', compact('users', 'roles'));
     }
 
     /**
@@ -69,6 +75,13 @@ class UsersController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $user = User::findOrFail($id);
+        if ( $roleArray = $request->role) {
+            $user->roles()->sync($roleArray);
+        }else{
+            $user->roles()->detach();
+        }
+        return redirect()->back();
     }
 
     /**

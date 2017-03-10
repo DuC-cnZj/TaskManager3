@@ -1,4 +1,6 @@
-@foreach($roles as $role)	
+@foreach($roles->chunk(3) as $rrole)	
+<div class="row">
+	@foreach($rrole as $role)
 		<div class="col-md-4">
 			<div class="panel {{ $role->name == 'admin' ? "panel-danger" : "panel-default"}} ">
 			    <div class="panel-heading">
@@ -7,14 +9,12 @@
 						{{ $role->display_name or $role->name }}
 					</div>
 
-					@if($role->name !== 'admin')
-						@ability('admin', 'delete_role')
-							@include('auth.roles._deleteForm')
-						@endability
-					@endif
+					@ability('admin', 'delete_role')
+						@include('auth.roles._deleteForm')
+					@endability
 
 					@ability('admin', 'edit_role')
-					@include('auth.roles._editRoleModal')
+						@include('auth.roles._editRoleModal')
 					@endability
 					
                     <div class="clearfix"></div>
@@ -37,6 +37,6 @@
 			    @endif
 			</div>
 		</div>
-
 	@endforeach
-
+</div>
+@endforeach
