@@ -13,9 +13,9 @@
 
     <!-- Styles -->
     {{-- <script src="{{ asset('js/jquery.min.js') }}"></script> --}}
-    <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+    <link href="{{asset('css/css/font-awesome.css')}}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="//cdn.bootcss.com/animate.css/3.5.2/animate.css" rel="stylesheet">
+    <link href="{{ asset('css/animate.css') }}" rel="stylesheet">
     
     <!-- Scripts -->
     <script>
@@ -52,7 +52,7 @@
 
                       @role('admin')
                       <li class="dropdown">
-                            <a href="#" class="btn dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown">用户权限管理
+                            <a href="#" class="dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown">用户权限管理
                                 <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
