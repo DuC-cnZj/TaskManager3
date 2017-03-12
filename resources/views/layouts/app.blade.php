@@ -16,6 +16,7 @@
     <link href="{{asset('css/css/font-awesome.css')}}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/animate.css') }}" rel="stylesheet">
+    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" type="image/x-icon" />
     
     <!-- Scripts -->
     <script>
